@@ -47,6 +47,24 @@ public class RestaurantTest {
     }
 
 
+    @Test
+    public void calculate_total_should_return_correct_total_for_given_items() {
+        try {
+            int total = restaurant.calculateTotal(Arrays.asList("Test Item 1", "Test Item 2"));
+            assertEquals(300, total);
+        } catch (ItemNotFoundException e) {
+            fail("ItemNotFoundException was thrown");
+        }
+    }
+
+
+
+    @Test
+    public void calculate_total_should_throw_exception_for_non_existent_item() {
+        assertThrows(ItemNotFoundException.class, () -> {
+            restaurant.calculateTotal(Arrays.asList("Non Existent Item"));
+        });
+    }
 
 
 
